@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2018-6-5 16:37:04 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_blog" dynamic-insert="false" dynamic-update="false" mutable="true" name="Bloginfo" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="bloginfo">
+        <id name="username" type="string">
+            <column length="20" name="username"/>
+            <generator class="foreign">
+                <param name="property">user</param>
+            </generator>
+        </id>
+        <one-to-one class="User" constrained="true" embed-xml="true" name="user"/>
+        <property generated="never" lazy="false" name="eblogtitle" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="eblogtitle"/>
+        </property>
+        <property generated="never" lazy="false" name="idiograph" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="idiograph"/>
+        </property>
+    </class>
+</hibernate-mapping>

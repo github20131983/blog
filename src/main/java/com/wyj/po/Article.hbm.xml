@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2018-6-5 16:37:04 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_blog" dynamic-insert="false" dynamic-update="false" mutable="true" name="Article" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="article">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="User" embed-xml="true" fetch="select" insert="true" name="user" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="50" name="username"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="title" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="title"/>
+        </property>
+        <property generated="never" lazy="false" name="content" optimistic-lock="true" type="string" unique="false">
+            <column length="65535" name="content"/>
+        </property>
+        <property generated="never" lazy="false" name="date" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="date"/>
+        </property>
+        <property generated="never" lazy="false" name="hasread" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="hasread"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="critiques" optimistic-lock="true" sort="unsorted" table="critique">
+            <key on-delete="noaction">
+                <column name="AId"/>
+            </key>
+            <one-to-many class="Critique" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="hitses" optimistic-lock="true" sort="unsorted" table="hits">
+            <key on-delete="noaction">
+                <column name="AId"/>
+            </key>
+            <one-to-many class="Hits" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

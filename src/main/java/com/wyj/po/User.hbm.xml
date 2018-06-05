@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2018-6-5 16:37:04 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_blog" dynamic-insert="false" dynamic-update="false" mutable="true" name="User" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="user">
+        <id name="username" type="string">
+            <column length="20" name="username"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="password" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="password"/>
+        </property>
+        <property generated="never" lazy="false" name="nickname" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="nickname"/>
+        </property>
+        <property generated="never" lazy="false" name="question" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="question"/>
+        </property>
+        <property generated="never" lazy="false" name="answer" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="answer"/>
+        </property>
+        <one-to-one class="Bloginfo" constrained="false" embed-xml="true" name="bloginfo"/>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="articles" optimistic-lock="true" sort="unsorted" table="article">
+            <key on-delete="noaction">
+                <column length="50" name="username"/>
+            </key>
+            <one-to-many class="Article" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="critiques" optimistic-lock="true" sort="unsorted" table="critique">
+            <key on-delete="noaction">
+                <column length="50" name="username"/>
+            </key>
+            <one-to-many class="Critique" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

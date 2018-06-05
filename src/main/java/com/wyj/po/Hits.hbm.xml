@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2018-6-5 16:37:04 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="db_blog" dynamic-insert="false" dynamic-update="false" mutable="true" name="Hits" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="hits">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Article" embed-xml="true" fetch="select" insert="true" name="article" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="AId"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="ip" optimistic-lock="true" type="string" unique="false">
+            <column name="ip"/>
+        </property>
+        <property generated="never" lazy="false" name="time" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="time"/>
+        </property>
+    </class>
+</hibernate-mapping>
